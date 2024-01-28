@@ -51,6 +51,9 @@ class Ws_Rescue_Rover_Pro_Admin {
 
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
+        add_theme_support( 'core-block-patterns', array() );
+        add_theme_support( 'post-formats', array() );
+        
 
 	}
 
@@ -99,5 +102,177 @@ class Ws_Rescue_Rover_Pro_Admin {
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/ws-rescue-rover-pro-admin.js', array( 'jquery' ), $this->version, false );
 
 	}
+
+    // Register Custom Post Type
+    function register_rescue_rover_post_types() {
+
+        $labels = array(
+            'name'                  => _x( 'Dogs', 'Post Type General Name', 'ws-rescue-rover-pro' ),
+            'singular_name'         => _x( 'Dog', 'Post Type Singular Name', 'ws-rescue-rover-pro' ),
+            'menu_name'             => __( 'Dogs', 'ws-rescue-rover-pro' ),
+            'name_admin_bar'        => __( 'Dogs', 'ws-rescue-rover-pro' ),
+            'archives'              => __( 'Dog Archives', 'ws-rescue-rover-pro' ),
+            'attributes'            => __( 'Dog Attributes', 'ws-rescue-rover-pro' ),
+            'parent_item_colon'     => __( 'Parent Dog:', 'ws-rescue-rover-pro' ),
+            'all_items'             => __( 'All Dogs', 'ws-rescue-rover-pro' ),
+            'add_new_item'          => __( 'Add New Dog', 'ws-rescue-rover-pro' ),
+            'add_new'               => __( 'Add New Dog', 'ws-rescue-rover-pro' ),
+            'new_item'              => __( 'New Dog', 'ws-rescue-rover-pro' ),
+            'edit_item'             => __( 'Edit Dog', 'ws-rescue-rover-pro' ),
+            'update_item'           => __( 'Update Dog', 'ws-rescue-rover-pro' ),
+            'view_item'             => __( 'View Dog', 'ws-rescue-rover-pro' ),
+            'view_items'            => __( 'View Dogs', 'ws-rescue-rover-pro' ),
+            'search_items'          => __( 'Search Dog', 'ws-rescue-rover-pro' ),
+            'not_found'             => __( 'Not found', 'ws-rescue-rover-pro' ),
+            'not_found_in_trash'    => __( 'Not found in Trash', 'ws-rescue-rover-pro' ),
+            'featured_image'        => __( 'Featured Image', 'ws-rescue-rover-pro' ),
+            'set_featured_image'    => __( 'Set featured image', 'ws-rescue-rover-pro' ),
+            'remove_featured_image' => __( 'Remove featured image', 'ws-rescue-rover-pro' ),
+            'use_featured_image'    => __( 'Use as featured image', 'ws-rescue-rover-pro' ),
+            'insert_into_item'      => __( 'Insert into Dog', 'ws-rescue-rover-pro' ),
+            'uploaded_to_this_item' => __( 'Uploaded to this Dog', 'ws-rescue-rover-pro' ),
+            'items_list'            => __( 'Dogs list', 'ws-rescue-rover-pro' ),
+            'items_list_navigation' => __( 'Dogs list navigation', 'ws-rescue-rover-pro' ),
+            'filter_items_list'     => __( 'Filter Dogs list', 'ws-rescue-rover-pro' ),
+        );
+        $args = array(
+            'label'                 => __( 'Dog', 'ws-rescue-rover-pro' ),
+            'description'           => __( 'Animals for rescue dog', 'ws-rescue-rover-pro' ),
+            'labels'                => $labels,
+            'supports'              => array( 'title', 'thumbnail' ),
+            'hierarchical'          => true,
+            'public'                => true,
+            'show_ui'               => true,
+            'show_in_menu'          => true,
+            'menu_position'         => 5,
+            'menu_icon'             => 'dashicons-pets',
+            'show_in_admin_bar'     => true,
+            'show_in_nav_menus'     => true,
+            'can_export'            => true,
+            'has_archive'           => true,
+            'exclude_from_search'   => false,
+            'publicly_queryable'    => true,
+            'capability_type'       => 'post',
+            'show_in_rest'          => true,
+        );
+        register_post_type( 'dog_rescue', $args );
+
+        $labels = array(
+            'name'                  => _x( 'Foster Applications', 'Post Type General Name', 'ws-rescue-rover-pro' ),
+            'singular_name'         => _x( 'Foster Application', 'Post Type Singular Name', 'ws-rescue-rover-pro' ),
+            'menu_name'             => __( 'Foster Applications', 'ws-rescue-rover-pro' ),
+            'name_admin_bar'        => __( 'Foster Applications', 'ws-rescue-rover-pro' ),
+            'archives'              => __( 'Foster Application Archives', 'ws-rescue-rover-pro' ),
+            'attributes'            => __( 'Foster Application Attributes', 'ws-rescue-rover-pro' ),
+            'parent_item_colon'     => __( 'Parent Foster Application:', 'ws-rescue-rover-pro' ),
+            'all_items'             => __( 'All Foster Applications', 'ws-rescue-rover-pro' ),
+            'add_new_item'          => __( 'Add New Foster Application', 'ws-rescue-rover-pro' ),
+            'add_new'               => __( 'Add New Application', 'ws-rescue-rover-pro' ),
+            'new_item'              => __( 'New Foster Application', 'ws-rescue-rover-pro' ),
+            'edit_item'             => __( 'Edit Foster Application', 'ws-rescue-rover-pro' ),
+            'update_item'           => __( 'Update Foster Application', 'ws-rescue-rover-pro' ),
+            'view_item'             => __( 'View Foster Application', 'ws-rescue-rover-pro' ),
+            'view_items'            => __( 'View Foster Applications', 'ws-rescue-rover-pro' ),
+            'search_items'          => __( 'Search Foster Application', 'ws-rescue-rover-pro' ),
+            'not_found'             => __( 'Not found', 'ws-rescue-rover-pro' ),
+            'not_found_in_trash'    => __( 'Not found in Trash', 'ws-rescue-rover-pro' ),
+            'featured_image'        => __( 'Featured Image', 'ws-rescue-rover-pro' ),
+            'set_featured_image'    => __( 'Set featured image', 'ws-rescue-rover-pro' ),
+            'remove_featured_image' => __( 'Remove featured image', 'ws-rescue-rover-pro' ),
+            'use_featured_image'    => __( 'Use as featured image', 'ws-rescue-rover-pro' ),
+            'insert_into_item'      => __( 'Insert into Foster Application', 'ws-rescue-rover-pro' ),
+            'uploaded_to_this_item' => __( 'Uploaded to this Foster Application', 'ws-rescue-rover-pro' ),
+            'items_list'            => __( 'Foster Applications list', 'ws-rescue-rover-pro' ),
+            'items_list_navigation' => __( 'Foster Applications list navigation', 'ws-rescue-rover-pro' ),
+            'filter_items_list'     => __( 'Filter Foster Applications list', 'ws-rescue-rover-pro' ),
+        );
+        $args = array(
+            'label'                 => __( 'Foster Application', 'ws-rescue-rover-pro' ),
+            'description'           => __( 'Foster applications for rescue', 'ws-rescue-rover-pro' ),
+            'labels'                => $labels,
+            'supports'              => array( 'title', 'thumbnail' ),
+            'hierarchical'          => false,
+            'public'                => true,
+            'show_ui'               => true,
+            'show_in_menu'          => true,
+            'menu_position'         => 5,
+            'menu_icon'             => 'dashicons-id',
+            'show_in_admin_bar'     => true,
+            'show_in_nav_menus'     => true,
+            'can_export'            => true,
+            'has_archive'           => true,
+            'exclude_from_search'   => false,
+            'publicly_queryable'    => true,
+            'capability_type'       => 'post',
+            'show_in_rest'          => true,
+        );
+
+        register_post_type( 'foster_app', $args );
+
+    }
+
+    /**
+     * This changes the title placeholder for dog_rescue post type.
+     * @param  [type] $title [description]
+     * @return [type]        [description]
+     */
+    function render_rescue_pro_title_block_placeholder( $title ) {
+        $screen = get_current_screen();
+           
+         if  ( 'dog_rescue' == $screen->post_type ) {
+              $title = 'Enter Animal Name';
+         }
+
+         if  ( 'foster_app' == $screen->post_type ) {
+              $title = 'Enter Name For Application';
+         }
+
+        return $title;
+    }
+
+    function render_rescue_age_block($attributes) {
+        // Your block content goes here
+        return '<div>Rescue Age: ' . esc_html($attributes['custom_field']) . '</div>';
+    }
+
+    function enqueue_custom_block_pattern_script() {
+        if (is_admin()) {
+            wp_enqueue_script(
+                'custom-block-pattern',
+                get_template_directory_uri() . '/js/custom-block-pattern.js', // Adjust the path to your script
+                array('wp-blocks', 'wp-dom-ready', 'wp-edit-post'),
+                true
+            );
+        }
+    }
+
+    function display_initial_data_meta_box() {
+        add_meta_box(
+            'rescue_data_meta_box',
+            'Rescue Data',
+            array( $this, 'display_initial_data_content' ),
+            'dog_rescue',
+            'normal',
+            'high'
+        );
+    }
+
+    function display_initial_data_content($post) {
+        $rescue_age = get_post_meta($post->ID, '_rescue_age', true);
+        echo "<pre>\n";
+        print_r( $rescue_age );
+        echo "</pre>\n";
+        
+            
+        echo '<div class="row g-3 align-items-center">
+              <div class="col-auto">
+                <label for="rescue-age" class="col-form-label">Age</label>
+              </div>
+              <div class="col-auto">
+                <input type="text" id="_rescue_age" class="form-control" value="' . ((! empty($rescue_age) ) ? $rescue_age: "" ) . '">
+              </div>
+            </div>';
+    }
+
 
 }
