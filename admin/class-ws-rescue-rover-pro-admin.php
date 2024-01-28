@@ -230,22 +230,6 @@ class Ws_Rescue_Rover_Pro_Admin {
         return $title;
     }
 
-    function render_rescue_age_block($attributes) {
-        // Your block content goes here
-        return '<div>Rescue Age: ' . esc_html($attributes['custom_field']) . '</div>';
-    }
-
-    function enqueue_custom_block_pattern_script() {
-        if (is_admin()) {
-            wp_enqueue_script(
-                'custom-block-pattern',
-                get_template_directory_uri() . '/js/custom-block-pattern.js', // Adjust the path to your script
-                array('wp-blocks', 'wp-dom-ready', 'wp-edit-post'),
-                true
-            );
-        }
-    }
-
     function display_initial_data_meta_box() {
         add_meta_box(
             'rescue_data_meta_box',
@@ -258,18 +242,18 @@ class Ws_Rescue_Rover_Pro_Admin {
     }
 
     function display_initial_data_content($post) {
-        $rescue_age = get_post_meta($post->ID, '_rescue_age', true);
+        $dog_age = get_post_meta($post->ID, '_dog_age', true);
         echo "<pre>\n";
-        print_r( $rescue_age );
+        print_r( $dog_age );
         echo "</pre>\n";
         
             
         echo '<div class="row g-3 align-items-center">
               <div class="col-auto">
-                <label for="rescue-age" class="col-form-label">Age</label>
+                <label for="_dog_age" class="col-form-label">Age</label>
               </div>
               <div class="col-auto">
-                <input type="text" id="_rescue_age" class="form-control" value="' . ((! empty($rescue_age) ) ? $rescue_age: "" ) . '">
+                <input type="text" id="_dog_age" class="form-control" value="' . ((! empty($dog_age) ) ? $dog_age: "" ) . '">
               </div>
             </div>';
     }
