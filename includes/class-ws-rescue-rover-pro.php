@@ -160,6 +160,7 @@ class Ws_Rescue_Rover_Pro {
 		$this->loader->add_filter( 'enter_title_here', $plugin_admin, 'render_rescue_pro_title_block_placeholder' );
 		$this->loader->add_action( 'enqueue_block_editor_assets', $plugin_admin, 'enqueue_custom_block_pattern_script' );
 		$this->loader->add_action( 'add_meta_boxes', $plugin_admin, 'display_initial_data_meta_box' );
+		$this->loader->add_action( 'save_post', $plugin_admin, 'update_rescue_metadata' );
 
 	}
 

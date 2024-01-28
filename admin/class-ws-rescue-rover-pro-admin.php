@@ -106,6 +106,7 @@ class Ws_Rescue_Rover_Pro_Admin {
     // Register Custom Post Type
     function register_rescue_rover_post_types() {
 
+
         $labels = array(
             'name'                  => _x( 'Dogs', 'Post Type General Name', 'ws-rescue-rover-pro' ),
             'singular_name'         => _x( 'Dog', 'Post Type Singular Name', 'ws-rescue-rover-pro' ),
@@ -155,7 +156,7 @@ class Ws_Rescue_Rover_Pro_Admin {
             'capability_type'       => 'post',
             'show_in_rest'          => true,
         );
-        register_post_type( 'dog_rescue', $args );
+        register_post_type( 'dogs', $args );
 
         $labels = array(
             'name'                  => _x( 'Foster Applications', 'Post Type General Name', 'ws-rescue-rover-pro' ),
@@ -206,7 +207,6 @@ class Ws_Rescue_Rover_Pro_Admin {
             'capability_type'       => 'post',
             'show_in_rest'          => true,
         );
-
         register_post_type( 'foster_app', $args );
 
     }
@@ -219,7 +219,7 @@ class Ws_Rescue_Rover_Pro_Admin {
     function render_rescue_pro_title_block_placeholder( $title ) {
         $screen = get_current_screen();
            
-         if  ( 'dog_rescue' == $screen->post_type ) {
+         if  ( 'dogs' == $screen->post_type ) {
               $title = 'Enter Animal Name';
          }
 
@@ -232,31 +232,274 @@ class Ws_Rescue_Rover_Pro_Admin {
 
     function display_initial_data_meta_box() {
         add_meta_box(
-            'rescue_data_meta_box',
-            'Rescue Data',
+            '_dog_meta_box',
+            'Dog Data',
             array( $this, 'display_initial_data_content' ),
-            'dog_rescue',
+            'dogs',
             'normal',
             'high'
         );
     }
 
     function display_initial_data_content($post) {
-        $dog_age = get_post_meta($post->ID, '_dog_age', true);
-        echo "<pre>\n";
-        print_r( $dog_age );
-        echo "</pre>\n";
-        
+        $fields_for_dog_data = $this->get_dog_data_fields();
+
+        foreach ( $fields_for_dog_data as $key => $value ) {
+            $current_meta = get_post_meta($post->ID, '_dog_' . $value['label'], true);
+
+            switch ( $value['field_type'] ) {
+                case 'select':
+                    echo '<div class="row g-3 align-items-center">
+                            <div class="col-auto">
+                            <label for="_dog_' . $value['label'] . '" class="col-form-label">' . $value['title'] . '</label>
+                          </div>
+                          <select class="form-select" name="_dog_' . $value['label'] . '" aria-label="_dog_' . $value['label'] . '">';
+                            echo '<option value="">Select Sex</option>';
+                        foreach( $value['options'] as $opt ) {
+                            echo '<option value="' . $opt . '"' . ( ( $opt == $current_meta ) ? " Selected": "" ) . '>' . $opt . '</option>';
+                        }
+                    echo '</select>
+                        </div>';
+                    break;
+                default:
+                    echo '<div class="row g-3 align-items-center">
+                          <div class="col-auto">
+                            <label for="_dog_' . $value['label'] . '" class="col-form-label">' . $value['title'] . '</label>
+                          </div>
+                          <div class="col-auto">
+                            <input type="text" id="_dog_' . $value['label'] . '" name="_dog_' . $value['label']. '" class="form-control" value="' . ((! empty($current_meta) ) ? $current_meta: "" ) . '">
+                          </div>
+                        </div>';
+            }
             
-        echo '<div class="row g-3 align-items-center">
-              <div class="col-auto">
-                <label for="_dog_age" class="col-form-label">Age</label>
-              </div>
-              <div class="col-auto">
-                <input type="text" id="_dog_age" class="form-control" value="' . ((! empty($dog_age) ) ? $dog_age: "" ) . '">
-              </div>
-            </div>';
+        }
+
+            
     }
 
+    function update_rescue_metadata( $post_id ) {
+        if ( 'dogs' == get_post_type() ) {
+            $fields_for_dog_data = $this->get_dog_data_fields();
+            foreach ( $fields_for_dog_data as $value ) {
+                update_post_meta( $post_id, '_dog_' . $value['label'], $_POST['_dog_' . $value['label'] ] );
+            }
+        }
+    }
+
+    function get_dog_data_fields() {
+        return array(
+            array( 
+                'label' => 'other_names',
+                'title' => 'Other Names',
+                'field_type' => 'text',
+            ),
+            array( 
+                'label' => 'profile',
+                'title' => 'Profile',
+                'field_type' => 'text',
+            ),
+            array( 
+                'label' => 'status',
+                'title' => 'Status',
+                'field_type' => 'text',
+            ),
+            array( 
+                'label' => 'sex',
+                'title' => 'Sex',
+                'field_type' => 'select',
+                'options' => array( 'M', 'F'),
+            ),
+            array( 
+                'label' => 'video',
+                'title' => 'Video',
+                'field_type' => 'text',
+            ),
+            array( 
+                'label' => 'video_URL',
+                'title' => 'Video URL',
+                'field_type' => 'text',
+            ),
+            array( 
+                'label' => 'foster_needed',
+                'title' => 'Foster Needed',
+                'field_type' => 'text',
+            ),
+            array( 
+                'label' => 'sponsored_by',
+                'title' => 'Sponsored By',
+                'field_type' => 'text',
+            ),
+            array( 
+                'label' => 'long_desc',
+                'title' => 'Long Description',
+                'field_type' => 'text',
+            ),
+            array( 
+                'label' => 'date_adopted',
+                'title' => 'Date Adopted',
+                'field_type' => 'text',
+            ),
+            array( 
+                'label' => 'priBreed',
+                'title' => 'Primary Breed',
+                'field_type' => 'text',
+            ),
+            array( 
+                'label' => 'age',
+                'title' => 'Age',
+                'field_type' => 'text',
+            ),
+            array( 
+                'label' => 'okwithdogs',
+                'title' => 'Ok With Dogs',
+                'field_type' => 'text',
+            ),
+            array( 
+                'label' => 'okwithcats',
+                'title' => 'Ok With Cats',
+                'field_type' => 'text',
+            ),
+            array( 
+                'label' => 'okwithkids',
+                'title' => 'Ok With Kids',
+                'field_type' => 'text',
+            ),
+            array( 
+                'label' => 'housebroken',
+                'title' => 'House Broken',
+                'field_type' => 'text',
+            ),
+            array( 
+                'label' => 'specialNeeds',
+                'title' => 'Special Needs',
+                'field_type' => 'text',
+            ),
+            array( 
+                'label' => 'size',
+                'title' => 'Size',
+                'field_type' => 'text',
+            ),
+            array( 
+                'label' => 'shots',
+                'title' => 'Shots',
+                'field_type' => 'text',
+            ),
+            array( 
+                'label' => 'color',
+                'title' => 'Color',
+                'field_type' => 'text',
+            ),
+            array( 
+                'label' => 'coatLength',
+                'title' => 'Coat Length',
+                'field_type' => 'text',
+            ),
+            array( 
+                'label' => 'incoming_info',
+                'title' => 'Incoming Info',
+                'field_type' => 'text',
+            ),
+            array( 
+                'label' => 'incoming_date',
+                'title' => 'Incoming Date',
+                'field_type' => 'text',
+            ),
+            array( 
+                'label' => 'location_type',
+                'title' => 'Location Type',
+                'field_type' => 'text',
+            ),
+            array( 
+                'label' => 'location',
+                'title' => 'Location',
+                'field_type' => 'text',
+            ),
+            array( 
+                'label' => 'rabies',
+                'title' => 'Rabies',
+                'field_type' => 'text',
+            ),
+            array( 
+                'label' => 'rabies_time',
+                'title' => 'Rabies Time',
+                'field_type' => 'text',
+            ),
+            array( 
+                'label' => 'DHLPP',
+                'title' => 'DHLPP',
+                'field_type' => 'text',
+            ),
+            array( 
+                'label' => 'DHLPP_time',
+                'title' => 'DHLPP Time',
+                'field_type' => 'text',
+            ),
+            array( 
+                'label' => 'bord',
+                'title' => 'Bord',
+                'field_type' => 'text',
+            ),
+            array( 
+                'label' => 'bord_time',
+                'title' => 'Bord Time',
+                'field_type' => 'text',
+            ),
+            array( 
+                'label' => 'flea_tick',
+                'title' => 'Flea Tick',
+                'field_type' => 'text',
+            ),
+            array( 
+                'label' => 'worm',
+                'title' => 'Worm',
+                'field_type' => 'text',
+            ),
+            array( 
+                'label' => 'flu',
+                'title' => 'Flu',
+                'field_type' => 'text',
+            ),
+            array( 
+                'label' => 'flu_type',
+                'title' => 'Flu Type',
+                'field_type' => 'text',
+            ),
+            array( 
+                'label' => 'microchip',
+                'title' => 'Microchip',
+                'field_type' => 'text',
+            ),
+            array( 
+                'label' => 'impound_num',
+                'title' => 'Impound Number',
+                'field_type' => 'text',
+            ),
+            array( 
+                'label' => 'fixed',
+                'title' => 'Fixed',
+                'field_type' => 'text',
+            ),
+            array( 
+                'label' => 'notes',
+                'title' => 'Notes',
+                'field_type' => 'text',
+            ),
+            array( 
+                'label' => 'litter',
+                'title' => 'Litter',
+                'field_type' => 'text',
+            ),
+            array( 
+                'label' => 'litter_notes',
+                'title' => 'Litter Notes',
+                'field_type' => 'text',
+            ),
+            array( 
+                'label' => 'vol_contact',
+                'title' => 'Vol Contact',
+                'field_type' => 'text',
+            ),
+        );
+    }
 
 }
