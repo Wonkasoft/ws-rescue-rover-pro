@@ -77,6 +77,12 @@ class Ws_Rescue_Rover_Pro_Admin {
 
 		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/ws-rescue-rover-pro-admin.css', array(), $this->version, 'all' );
 
+        $custom_post_types = $this->get_custom_post_types();
+        if ( array_key_exists( get_post_type(), $custom_post_types ) ) {
+            wp_enqueue_style( 'bootstrap', 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css', array(), '5.3.2', "media='all' integrity='sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN' crossorigin='anonymous'" );  
+        }
+            
+
 	}
 
 	/**
@@ -99,6 +105,10 @@ class Ws_Rescue_Rover_Pro_Admin {
 		 */
 
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/ws-rescue-rover-pro-admin.js', array( 'jquery' ), $this->version, false );
+        $custom_post_types = $this->get_custom_post_types();
+        if ( array_key_exists( get_post_type(), $custom_post_types ) ) {            
+            wp_enqueue_script( 'bootstrap', 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js', array('jquery'), '5.3.2', array( "media='all' integrity='sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL' crossorigin='anonymous'", false ) );  
+        }
 
 	}
 
@@ -202,12 +212,13 @@ class Ws_Rescue_Rover_Pro_Admin {
 			$current_count++;
 			$current_meta = get_post_meta( $post->ID, '_dogs_' . $value['label'], true );
 			if ( $current_count == 1 ) {
-				echo '<div class="row g-3 align-items-center">';
+				echo '<div class="container text-center"><div class="row g-3 align-items-center">';
 			}
 
 			switch ( $value['field_type'] ) {
 				case 'select':
-					echo '<div class="col-auto">
+					echo '<div class="col">
+                            <div class="col-auto">
                             <label for="_dogs_' . $value['label'] . '" class="col-form-label">' . $value['title'] . '</label>
                           </div>
                           <select class="form-select" name="_dogs_' . $value['label'] . '" aria-label="_dogs_' . $value['label'] . '">';
@@ -215,24 +226,26 @@ class Ws_Rescue_Rover_Pro_Admin {
 					foreach ( $value['options'] as $opt ) {
 						echo '<option value="' . $opt . '"' . ( ( $opt == $current_meta ) ? ' Selected' : '' ) . '>' . $opt . '</option>';
 					}
-					echo '</select>';
+					echo '</select></div>';
 					break;
 				default:
-					echo '<div class="col-auto">
+					echo '<div class="col">
+                          <div class="col-auto">
                             <label for="_dogs_' . $value['label'] . '" class="col-form-label">' . $value['title'] . '</label>
                           </div>
                           <div class="col-auto">
                             <input type="text" id="_dogs_' . $value['label'] . '" name="_dogs_' . $value['label'] . '" class="form-control" value="' . ( ( ! empty( $current_meta ) ) ? $current_meta : '' ) . '">
-                          </div>';
+                          </div></div>';
 			}
 
 			if ( $current_count % 3 === 0 ) {
-				echo '</div>
+				echo '</div></div>
+                    <div class="container text-center">
                     <div class="row g-3 align-items-center">';
 			}
 
 			if ( $current_count === $count_all ) {
-				echo '</div>';
+				echo '</div></div>';
 			}
 		}
 
