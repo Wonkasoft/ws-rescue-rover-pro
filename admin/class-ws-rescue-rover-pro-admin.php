@@ -212,7 +212,7 @@ class Ws_Rescue_Rover_Pro_Admin {
 			$current_count++;
 			$current_meta = get_post_meta( $post->ID, '_dogs_' . $value['label'], true );
 			if ( $current_count == 1 ) {
-				echo '<div class="container text-center"><div class="row g-3 align-items-center">';
+				echo '<div class="container text-center"><div class="row align-items-center">';
 			}
 
 			switch ( $value['field_type'] ) {
@@ -241,7 +241,7 @@ class Ws_Rescue_Rover_Pro_Admin {
 			if ( $current_count % 3 === 0 ) {
 				echo '</div></div>
                     <div class="container text-center">
-                    <div class="row g-3 align-items-center">';
+                    <div class="row align-items-center">';
 			}
 
 			if ( $current_count === $count_all ) {

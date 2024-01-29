@@ -2,3 +2,18 @@
  * All of the CSS for your public-facing functionality should be
  * included in this file.
  */
+
+
+.single-dogs .post-thumbnail {
+    max-width: 250px;
+    margin: 16px 0;
+}
+
+.single-dogs #rescue-main, .post-type-archive-dogs #rescue-main {
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+.single-dogs .entry-title {
+    width: 100%;
+}
