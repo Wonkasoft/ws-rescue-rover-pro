@@ -105,82 +105,8 @@ class Ws_Rescue_Rover_Pro_Admin {
 	// Register Custom Post Type
 	function register_rescue_rover_post_types() {
 
-		$custom_post_types = array(
-			'dogs' => array(
-				'single' => 'Dog',
-				'plural' => 'Dogs',
-				'menu_icon' => 'dashicons-pets',
-				'description' => 'Contains Dogs for Rescue',
-			),
-			'puppy_litters' => array(
-				'single' => 'Litter',
-				'plural' => 'Litters',
-				'menu_icon' => 'dashicons-buddicons-community',
-				'description' => 'Contains current Litters',
-			),
-			'coastal_vets' => array(
-				'single' => 'Coastal Vet',
-				'plural' => 'Coastal Vets',
-				'menu_icon' => 'dashicons-location-alt',
-				'description' => 'Contains Coastal Vets',
-			),
-			'coastal_boarding' => array(
-				'single' => 'Coastal Boarding',
-				'plural' => 'Coastal Boardings',
-				'menu_icon' => 'dashicons-nametag',
-				'description' => 'Contains Coastal Boarding',
-			),
-			'shelters' => array(
-				'single' => 'Shelter',
-				'plural' => 'Shelters',
-				'menu_icon' => 'dashicons-building',
-				'description' => 'Contains Shelters',
-			),
-			'adopter' => array(
-				'single' => 'Adopter',
-				'plural' => 'Adopters',
-				'menu_icon' => 'dashicons-universal-access',
-				'description' => 'Contains Adopters',
-			),
-			'adopter_apps' => array(
-				'single' => 'Adopter Application',
-				'plural' => 'Adopter Applications',
-				'menu_icon' => 'dashicons-list-view',
-				'description' => 'Contains Adopters',
-			),
-			'foster' => array(
-				'single' => 'Foster',
-				'plural' => 'Fosters',
-				'menu_icon' => 'dashicons-groups',
-				'description' => 'Contains Adopters',
-			),
-			'foster_apps' => array(
-				'single' => 'Foster Application',
-				'plural' => 'Foster Applications',
-				'menu_icon' => 'dashicons-list-view',
-				'description' => 'Contains Adopters',
-			),
-			'volunteers' => array(
-				'single' => 'Volunteer',
-				'plural' => 'Volunteers',
-				'menu_icon' => 'dashicons-universal-access-alt',
-				'description' => 'Contains Adopters',
-			),
-			'volunteer_apps' => array(
-				'single' => 'Volunteer Application',
-				'plural' => 'Volunteer Applications',
-				'menu_icon' => 'dashicons-list-view',
-				'description' => 'Contains Adopters',
-			),
-			'other_declines' => array(
-				'single' => 'Other Decline',
-				'plural' => 'Other Declines',
-				'menu_icon' => 'dashicons-feedback',
-				'description' => 'Contains Adopters',
-			),
-		);
+		$custom_post_types = $this->get_custom_post_types();
 
-		$custom_post_type_index = 10;
 		foreach ( $custom_post_types as $key => $value ) {
 				$labels = array(
 					'name'                  => _x( $value['plural'], 'Post Type General Name', 'ws-rescue-rover-pro' ),
@@ -220,7 +146,7 @@ class Ws_Rescue_Rover_Pro_Admin {
 					'public'                => true,
 					'show_ui'               => true,
 					'show_in_menu'          => true,
-					'menu_position'         => $custom_post_type_index,
+					'menu_position'         => 5,
 					'menu_icon'             => $value['menu_icon'],
 					'show_in_admin_bar'     => true,
 					'show_in_nav_menus'     => true,
@@ -232,7 +158,6 @@ class Ws_Rescue_Rover_Pro_Admin {
 					'show_in_rest'          => true,
 				);
 				register_post_type( $key, $args );
-				$custom_post_type_index++;
 		}
 
 	}
@@ -275,7 +200,7 @@ class Ws_Rescue_Rover_Pro_Admin {
 		$current_count = 0;
 		foreach ( $fields_for_dog_data as $key => $value ) {
 			$current_count++;
-			$current_meta = get_post_meta( $post->ID, '_dog_' . $value['label'], true );
+			$current_meta = get_post_meta( $post->ID, '_dogs_' . $value['label'], true );
 			if ( $current_count == 1 ) {
 				echo '<div class="row g-3 align-items-center">';
 			}
@@ -283,9 +208,9 @@ class Ws_Rescue_Rover_Pro_Admin {
 			switch ( $value['field_type'] ) {
 				case 'select':
 					echo '<div class="col-auto">
-                            <label for="_dog_' . $value['label'] . '" class="col-form-label">' . $value['title'] . '</label>
+                            <label for="_dogs_' . $value['label'] . '" class="col-form-label">' . $value['title'] . '</label>
                           </div>
-                          <select class="form-select" name="_dog_' . $value['label'] . '" aria-label="_dog_' . $value['label'] . '">';
+                          <select class="form-select" name="_dogs_' . $value['label'] . '" aria-label="_dogs_' . $value['label'] . '">';
 							echo '<option value="">Select Sex</option>';
 					foreach ( $value['options'] as $opt ) {
 						echo '<option value="' . $opt . '"' . ( ( $opt == $current_meta ) ? ' Selected' : '' ) . '>' . $opt . '</option>';
@@ -294,10 +219,10 @@ class Ws_Rescue_Rover_Pro_Admin {
 					break;
 				default:
 					echo '<div class="col-auto">
-                            <label for="_dog_' . $value['label'] . '" class="col-form-label">' . $value['title'] . '</label>
+                            <label for="_dogs_' . $value['label'] . '" class="col-form-label">' . $value['title'] . '</label>
                           </div>
                           <div class="col-auto">
-                            <input type="text" id="_dog_' . $value['label'] . '" name="_dog_' . $value['label'] . '" class="form-control" value="' . ( ( ! empty( $current_meta ) ) ? $current_meta : '' ) . '">
+                            <input type="text" id="_dogs_' . $value['label'] . '" name="_dogs_' . $value['label'] . '" class="form-control" value="' . ( ( ! empty( $current_meta ) ) ? $current_meta : '' ) . '">
                           </div>';
 			}
 
@@ -317,7 +242,7 @@ class Ws_Rescue_Rover_Pro_Admin {
 		if ( 'dogs' == get_post_type() ) {
 			$fields_for_dog_data = $this->get_dog_data_fields();
 			foreach ( $fields_for_dog_data as $value ) {
-				update_post_meta( $post_id, '_dog_' . $value['label'], $_POST[ '_dog_' . $value['label'] ] );
+				update_post_meta( $post_id, '_dogs_' . $value['label'], $_POST[ '_dogs_' . $value['label'] ] );
 			}
 		}
 	}
@@ -537,5 +462,82 @@ class Ws_Rescue_Rover_Pro_Admin {
 			),
 		);
 	}
+
+    function get_custom_post_types() {
+        return array(
+            'dogs' => array(
+                'single' => 'Dog',
+                'plural' => 'Dogs',
+                'menu_icon' => 'dashicons-pets',
+                'description' => 'Contains Dogs for Rescue',
+            ),
+            'puppy_litters' => array(
+                'single' => 'Litter',
+                'plural' => 'Litters',
+                'menu_icon' => 'dashicons-buddicons-community',
+                'description' => 'Contains current Litters',
+            ),
+            'coastal_vets' => array(
+                'single' => 'Coastal Vet',
+                'plural' => 'Coastal Vets',
+                'menu_icon' => 'dashicons-location-alt',
+                'description' => 'Contains Coastal Vets',
+            ),
+            'coastal_boarding' => array(
+                'single' => 'Coastal Boarding',
+                'plural' => 'Coastal Boardings',
+                'menu_icon' => 'dashicons-nametag',
+                'description' => 'Contains Coastal Boarding',
+            ),
+            'shelters' => array(
+                'single' => 'Shelter',
+                'plural' => 'Shelters',
+                'menu_icon' => 'dashicons-building',
+                'description' => 'Contains Shelters',
+            ),
+            'adopter' => array(
+                'single' => 'Adopter',
+                'plural' => 'Adopters',
+                'menu_icon' => 'dashicons-universal-access',
+                'description' => 'Contains Adopters',
+            ),
+            'adopter_apps' => array(
+                'single' => 'Adopter Application',
+                'plural' => 'Adopter Applications',
+                'menu_icon' => 'dashicons-list-view',
+                'description' => 'Contains Adopters',
+            ),
+            'foster' => array(
+                'single' => 'Foster',
+                'plural' => 'Fosters',
+                'menu_icon' => 'dashicons-groups',
+                'description' => 'Contains Adopters',
+            ),
+            'foster_apps' => array(
+                'single' => 'Foster Application',
+                'plural' => 'Foster Applications',
+                'menu_icon' => 'dashicons-list-view',
+                'description' => 'Contains Adopters',
+            ),
+            'volunteers' => array(
+                'single' => 'Volunteer',
+                'plural' => 'Volunteers',
+                'menu_icon' => 'dashicons-universal-access-alt',
+                'description' => 'Contains Adopters',
+            ),
+            'volunteer_apps' => array(
+                'single' => 'Volunteer Application',
+                'plural' => 'Volunteer Applications',
+                'menu_icon' => 'dashicons-list-view',
+                'description' => 'Contains Adopters',
+            ),
+            'other_declines' => array(
+                'single' => 'Other Decline',
+                'plural' => 'Other Declines',
+                'menu_icon' => 'dashicons-feedback',
+                'description' => 'Contains Adopters',
+            ),
+        );
+    }
 
 }
