@@ -156,11 +156,7 @@ class Ws_Rescue_Rover_Pro {
 
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
-		$this->loader->add_action( 'init', $plugin_admin, 'register_rescue_rover_post_types', 0 );
-		$this->loader->add_filter( 'enter_title_here', $plugin_admin, 'render_rescue_pro_title_block_placeholder' );
-		$this->loader->add_action( 'enqueue_block_editor_assets', $plugin_admin, 'enqueue_custom_block_pattern_script' );
-		$this->loader->add_action( 'add_meta_boxes', $plugin_admin, 'display_initial_data_meta_box' );
-		$this->loader->add_action( 'save_post', $plugin_admin, 'update_rescue_metadata' );
+		$this->loader->add_action( 'admin_menu', $plugin_admin, 'create_admin_page' );
 
 	}
 
