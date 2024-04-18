@@ -4,5 +4,4 @@
     console.log('Window Ready');
   });
 
-
 })(jQuery);

@@ -80,8 +80,8 @@ class Ws_Rescue_Rover_Pro_Admin {
 				// queue up your bootstrap
 				wp_enqueue_style( $style, str_replace( array( 'http:', 'https:' ), '', plugin_dir_url( __FILE__ ) . 'css/bootstrap.min.css' ), array(), '5.3.3', 'all' );
 			}
-			wp_enqueue_style( 'bootstrap-reboot', plugin_dir_url( __FILE__ ) . 'css/bootstrap-reboot.min.css', array(), '5.3.3', 'all' );
-			wp_enqueue_style( 'bootstrap-utilities', plugin_dir_url( __FILE__ ) . 'css/bootstrap-utilities.min.css', array( 'bootstrap' ), $this->version, 'all' );
+			wp_enqueue_style( 'bootstrap-reboot', plugin_dir_url( __FILE__ ) . 'css/bootstrap-reboot.min.css', array( 'bootstrap' ), '5.3.3', 'all' );
+			wp_enqueue_style( 'bootstrap-utilities', plugin_dir_url( __FILE__ ) . 'css/bootstrap-utilities.min.css', array( 'bootstrap' ), '5.3.3', 'all' );
 			wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/ws-rescue-rover-pro-admin.css', array( '' ), $this->version, 'all' );
 		}
 
