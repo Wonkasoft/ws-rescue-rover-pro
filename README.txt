@@ -7,6 +7,10 @@ Stable tag: 1.0.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
+![WordPress Logo](https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/WordPress_blue_logo.svg/1200px-WordPress_blue_logo.svg.png)
+
+![PHP Logo](https://www.php.net/images/logos/php-logo.svg)
+
 == Description ==
 
 WSRescueRoverPro is a powerful WordPress plugin designed to efficiently manage dog rescue operations. This plugin helps organizations track dogs from their entry into the rescue system all the way through adoption. It includes features for managing sponsors and tracking donations, promoting transparency and accountability in the rescue process.
