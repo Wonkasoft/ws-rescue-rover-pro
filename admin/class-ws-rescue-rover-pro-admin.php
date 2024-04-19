@@ -78,11 +78,11 @@ class Ws_Rescue_Rover_Pro_Admin {
 			$style = 'bootstrap';
 			if ( ! wp_style_is( $style, 'enqueued' ) && ! wp_style_is( $style, 'done' ) ) {
 				// queue up your bootstrap
-				wp_enqueue_style( $style, str_replace( array( 'http:', 'https:' ), '', plugin_dir_url( __FILE__ ) . 'css/bootstrap.min.css' ), array(), '5.3.3', 'all' );
+				wp_enqueue_style( 'bootstrap', plugin_dir_url( __FILE__ ) . 'css/bootstrap.min.css', array(), '5.3.3', 'all' );
 			}
-			wp_enqueue_style( 'bootstrap-reboot', plugin_dir_url( __FILE__ ) . 'css/bootstrap-reboot.min.css', array( 'bootstrap' ), '5.3.3', 'all' );
-			wp_enqueue_style( 'bootstrap-utilities', plugin_dir_url( __FILE__ ) . 'css/bootstrap-utilities.min.css', array( 'bootstrap' ), '5.3.3', 'all' );
-			wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/ws-rescue-rover-pro-admin.css', array( '' ), $this->version, 'all' );
+			wp_enqueue_style( 'bootstrap-reboot', plugin_dir_url( __FILE__ ) . 'css/bootstrap-reboot.min.css', array(), '5.3.3', 'all' );
+			wp_enqueue_style( 'bootstrap-utilities', plugin_dir_url( __FILE__ ) . 'css/bootstrap-utilities.min.css', array(), '5.3.3', 'all' );
+			wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/ws-rescue-rover-pro-admin.css', array(), $this->version, 'all' );
 		}
 
 	}
@@ -110,20 +110,38 @@ class Ws_Rescue_Rover_Pro_Admin {
 			$bootstrapjs = 'bootstrap-js';
 			if ( ! wp_script_is( $bootstrapjs, 'enqueued' ) && ! wp_script_is( $bootstrapjs, 'done' ) ) {
 				// enqueue bootstrap js
-				wp_enqueue_script( $bootstrapjs, str_replace( array( 'http:', 'https:' ), '', plugin_dir_url( __FILE__ ) . 'js/bootstrap.min.js' ), array( 'jquery' ), '5.3.3', true );
+				wp_enqueue_script( $bootstrapjs, plugin_dir_url( __FILE__ ) . 'js/bootstrap.min.js', array( 'jquery' ), '5.3.3', true );
 			}
-			wp_enqueue_script( 'bootstrap-bundle-js', plugin_dir_url( __FILE__ ) . 'js/bootstrap.bundle.min.js', array( 'jquery' ), '5.3.3', true );
+			wp_enqueue_script( 'bootstrap-bundle-js', plugin_dir_url( __FILE__ ) . 'js/bootstrap.bundle.min.js', array(), '5.3.3', true );
 			wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/ws-rescue-rover-pro-admin.js', array( 'jquery' ), $this->version, false );
 		}
 
 	}
 
-	public function create_admin_page() {
+	public function create_admin_pages() {
 		add_menu_page( 'WS Rescue Rover Pro', 'WS Rescue Rover Pro', 'manage_options', 'ws_rescue_rover_page', array( $this, 'ws_rescue_rover_admin_page' ), 'dashicons-pets', 2 );
+		add_menu_page( 'Dogs Menu', 'Dogs Menu', 'manage_options', 'ws_dogs_page', array( $this, 'ws_rescue_rover_dogs_page' ), 'dashicons-pets', 3 );
+		add_menu_page( 'People Menu', 'People Menu', 'manage_options', 'ws_people_page', array( $this, 'ws_rescue_rover_people_page' ), 'dashicons-pets', 4 );
+		add_menu_page( 'Reports Menu', 'Reports Menu', 'manage_options', 'ws_reports_page', array( $this, 'ws_rescue_rover_reports_page' ), 'dashicons-pets', 4 );
 	}
 
 	public function ws_rescue_rover_admin_page() {
-		include plugin_dir_path( __FILE__ ) . 'partials/ws-rescue-rover-main-page.php';
+		include plugin_dir_path( __FILE__ ) . 'pages/rescue-rover-main-page.php';
+	}
+
+
+	public function ws_rescue_rover_dogs_page() {
+		include plugin_dir_path( __FILE__ ) . 'pages/dogs-page.php';
+	}
+
+
+	public function ws_rescue_rover_people_page() {
+		include plugin_dir_path( __FILE__ ) . 'pages/people-page.php';
+	}
+
+
+	public function ws_rescue_rover_reports_page() {
+		include plugin_dir_path( __FILE__ ) . 'pages/reports-page.php';
 	}
 
 
