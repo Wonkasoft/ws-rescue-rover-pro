@@ -7,9 +7,10 @@ Stable tag: 1.0.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-![WordPress Logo](https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/WordPress_blue_logo.svg/1200px-WordPress_blue_logo.svg.png)
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/WordPress_blue_logo.svg/1200px-WordPress_blue_logo.svg.png" alt="WordPress Logo" width="200">
 
-![PHP Logo](https://www.php.net/images/logos/php-logo.svg)
+<img src="https://www.php.net/images/logos/php-logo.svg" alt="PHP Logo" width="200">
+
 
 == Description ==
 
