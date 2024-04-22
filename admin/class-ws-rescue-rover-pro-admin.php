@@ -74,16 +74,27 @@ class Ws_Rescue_Rover_Pro_Admin {
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
-		if ( get_current_screen()->base == 'ws_rescue_rover_page' || get_current_screen()->base == 'toplevel_page_ws_rescue_rover_page' ) {
-			$style = 'bootstrap';
-			if ( ! wp_style_is( $style, 'enqueued' ) && ! wp_style_is( $style, 'done' ) ) {
-				// queue up your bootstrap
-				wp_enqueue_style( 'bootstrap', plugin_dir_url( __FILE__ ) . 'css/bootstrap.min.css', array(), '5.3.3', 'all' );
-			}
-			wp_enqueue_style( 'bootstrap-reboot', plugin_dir_url( __FILE__ ) . 'css/bootstrap-reboot.min.css', array(), '5.3.3', 'all' );
-			wp_enqueue_style( 'bootstrap-utilities', plugin_dir_url( __FILE__ ) . 'css/bootstrap-utilities.min.css', array(), '5.3.3', 'all' );
-			wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/ws-rescue-rover-pro-admin.css', array(), $this->version, 'all' );
-		}
+				$ws_admin_pages = array(
+					'ws_rescue_settings_page',
+					'ws_dogs_page',
+					'ws_people_page',
+					'ws_reports_page',
+					'toplevel_page_ws_rescue_settings_page',
+					'toplevel_page_ws_dogs_page',
+					'toplevel_page_ws_people_page',
+					'toplevel_page_ws_reports_page',
+
+				);
+				if ( in_array( get_current_screen()->base, $ws_admin_pages ) ) {
+					$style = 'bootstrap';
+					if ( ! wp_style_is( $style, 'enqueued' ) && ! wp_style_is( $style, 'done' ) ) {
+						// queue up your bootstrap
+						wp_enqueue_style( 'bootstrap', plugin_dir_url( __FILE__ ) . 'css/bootstrap.min.css', array(), '5.3.3', 'all' );
+					}
+					wp_enqueue_style( 'bootstrap-reboot', plugin_dir_url( __FILE__ ) . 'css/bootstrap-reboot.min.css', array(), '5.3.3', 'all' );
+					wp_enqueue_style( 'bootstrap-utilities', plugin_dir_url( __FILE__ ) . 'css/bootstrap-utilities.min.css', array(), '5.3.3', 'all' );
+					wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/ws-rescue-rover-pro-admin.css', array(), $this->version, 'all' );
+				}
 
 	}
 
@@ -106,7 +117,18 @@ class Ws_Rescue_Rover_Pro_Admin {
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
-		if ( get_current_screen()->base == 'ws_rescue_rover_page' || get_current_screen()->base == 'toplevel_page_ws_rescue_rover_page' ) {
+		$ws_admin_pages = array(
+			'ws_rescue_settings_page',
+			'ws_dogs_page',
+			'ws_people_page',
+			'ws_reports_page',
+			'toplevel_page_ws_rescue_settings_page',
+			'toplevel_page_ws_dogs_page',
+			'toplevel_page_ws_people_page',
+			'toplevel_page_ws_reports_page',
+
+		);
+		if ( in_array( get_current_screen()->base, $ws_admin_pages ) ) {
 			$bootstrapjs = 'bootstrap-js';
 			if ( ! wp_script_is( $bootstrapjs, 'enqueued' ) && ! wp_script_is( $bootstrapjs, 'done' ) ) {
 				// enqueue bootstrap js
@@ -119,13 +141,13 @@ class Ws_Rescue_Rover_Pro_Admin {
 	}
 
 	public function create_admin_pages() {
-		add_menu_page( 'WS Rescue Rover Pro', 'WS Rescue Rover Pro', 'manage_options', 'ws_rescue_rover_page', array( $this, 'ws_rescue_rover_admin_page' ), 'dashicons-pets', 2 );
+		add_menu_page( 'Rescue Settings', 'Rescue Settings', 'manage_options', 'ws_rescue_settings_page', array( $this, 'rescue_settings_page' ), 'dashicons-admin-settings', 2 );
 		add_menu_page( 'Dogs Menu', 'Dogs Menu', 'manage_options', 'ws_dogs_page', array( $this, 'ws_rescue_rover_dogs_page' ), 'dashicons-pets', 3 );
-		add_menu_page( 'People Menu', 'People Menu', 'manage_options', 'ws_people_page', array( $this, 'ws_rescue_rover_people_page' ), 'dashicons-pets', 4 );
-		add_menu_page( 'Reports Menu', 'Reports Menu', 'manage_options', 'ws_reports_page', array( $this, 'ws_rescue_rover_reports_page' ), 'dashicons-pets', 4 );
+		add_menu_page( 'People Menu', 'People Menu', 'manage_options', 'ws_people_page', array( $this, 'ws_rescue_rover_people_page' ), 'dashicons-groups', 4 );
+		add_menu_page( 'Reports Menu', 'Reports Menu', 'manage_options', 'ws_reports_page', array( $this, 'ws_rescue_rover_reports_page' ), 'dashicons-feedback', 4 );
 	}
 
-	public function ws_rescue_rover_admin_page() {
+	public function rescue_settings_page() {
 		include plugin_dir_path( __FILE__ ) . 'pages/rescue-rover-main-page.php';
 	}
 
