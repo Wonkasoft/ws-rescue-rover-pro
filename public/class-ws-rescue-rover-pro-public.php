@@ -72,7 +72,14 @@ class Ws_Rescue_Rover_Pro_Public {
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
+        $style = 'bootstrap';
+            if ( ! wp_style_is( $style, 'enqueued' ) && ! wp_style_is( $style, 'done' ) ) {
+                // queue up your bootstrap
+                wp_enqueue_style( 'bootstrap', plugin_dir_url( __FILE__ ) . 'css/bootstrap.min.css', array(), '5.3.3', 'all' );
+            }
 
+            wp_enqueue_style( 'bootstrap-reboot', plugin_dir_url( __FILE__ ) . 'css/bootstrap-reboot.min.css', array(), '5.3.3', 'all' );
+            wp_enqueue_style( 'bootstrap-utilities', plugin_dir_url( __FILE__ ) . 'css/bootstrap-utilities.min.css', array(), '5.3.3', 'all' );
 		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/ws-rescue-rover-pro-public.css', array(), $this->version, 'all' );
 
 	}
@@ -95,101 +102,33 @@ class Ws_Rescue_Rover_Pro_Public {
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
-
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/ws-rescue-rover-pro-public.js', array( 'jquery' ), $this->version, false );
 
 	}
 
     function ws_rescue_post_type_templates_include( $template ) {
-        $custom_post_types = $this->get_custom_post_types();
-        foreach ( $custom_post_types as $key => $value) {
-            if ( is_singular( $key ) ) {
-                // Load single template from your plugin
-                $template = plugin_dir_path(__FILE__) . 'templates/singles/single-' . $key . '.php';
-            } elseif ( is_post_type_archive( $key ) ) {
-                // Load archive template from your plugin
-                $template = plugin_dir_path(__FILE__) . 'templates/archives/archive-' . $key . '.php';
-            }
-        }
+        // $custom_post_types = $this->get_custom_post_types();
+        // foreach ( $custom_post_types as $key => $value) {
+        //     if ( is_singular( $key ) ) {
+        //         // Load single template from your plugin
+        //         $template = plugin_dir_path(__FILE__) . 'templates/singles/single-' . $key . '.php';
+        //     } elseif ( is_post_type_archive( $key ) ) {
+        //         // Load archive template from your plugin
+        //         $template = plugin_dir_path(__FILE__) . 'templates/archives/archive-' . $key . '.php';
+        //     }
+        // }
 
         return $template;
     }
 
-    function get_custom_post_types() {
-        return array(
-            'dogs' => array(
-                'single' => 'Dog',
-                'plural' => 'Dogs',
-                'menu_icon' => 'dashicons-pets',
-                'description' => 'Contains Dogs for Rescue',
-            ),
-            'puppy_litters' => array(
-                'single' => 'Litter',
-                'plural' => 'Litters',
-                'menu_icon' => 'dashicons-buddicons-community',
-                'description' => 'Contains current Litters',
-            ),
-            'coastal_vets' => array(
-                'single' => 'Coastal Vet',
-                'plural' => 'Coastal Vets',
-                'menu_icon' => 'dashicons-location-alt',
-                'description' => 'Contains Coastal Vets',
-            ),
-            'coastal_boarding' => array(
-                'single' => 'Coastal Boarding',
-                'plural' => 'Coastal Boardings',
-                'menu_icon' => 'dashicons-nametag',
-                'description' => 'Contains Coastal Boarding',
-            ),
-            'shelters' => array(
-                'single' => 'Shelter',
-                'plural' => 'Shelters',
-                'menu_icon' => 'dashicons-building',
-                'description' => 'Contains Shelters',
-            ),
-            'adopter' => array(
-                'single' => 'Adopter',
-                'plural' => 'Adopters',
-                'menu_icon' => 'dashicons-universal-access',
-                'description' => 'Contains Adopters',
-            ),
-            'adopter_apps' => array(
-                'single' => 'Adopter Application',
-                'plural' => 'Adopter Applications',
-                'menu_icon' => 'dashicons-list-view',
-                'description' => 'Contains Adopters',
-            ),
-            'foster' => array(
-                'single' => 'Foster',
-                'plural' => 'Fosters',
-                'menu_icon' => 'dashicons-groups',
-                'description' => 'Contains Adopters',
-            ),
-            'foster_apps' => array(
-                'single' => 'Foster Application',
-                'plural' => 'Foster Applications',
-                'menu_icon' => 'dashicons-list-view',
-                'description' => 'Contains Adopters',
-            ),
-            'volunteers' => array(
-                'single' => 'Volunteer',
-                'plural' => 'Volunteers',
-                'menu_icon' => 'dashicons-universal-access-alt',
-                'description' => 'Contains Adopters',
-            ),
-            'volunteer_apps' => array(
-                'single' => 'Volunteer Application',
-                'plural' => 'Volunteer Applications',
-                'menu_icon' => 'dashicons-list-view',
-                'description' => 'Contains Adopters',
-            ),
-            'other_declines' => array(
-                'single' => 'Other Decline',
-                'plural' => 'Other Declines',
-                'menu_icon' => 'dashicons-feedback',
-                'description' => 'Contains Adopters',
-            ),
-        );
+
+
+    function ws_rescue_register_shortcodes() {
+        add_shortcode( 'available-dogs', array( $this, 'build_available_dogs') );
     }
 
+    function build_available_dogs() {
+        require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/templates/shortcodes/available-dogs-shortcode.php';
+        return $output;
+    }
 }
