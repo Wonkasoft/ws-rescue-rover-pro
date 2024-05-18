@@ -1,4 +1,26 @@
 <?php
+
+/**
+ * The admin-specific functionality of the plugin.
+ *
+ * @link  https://wonkasoft.com
+ * @since 1.0.0
+ *
+ * @package    Ws_Rescue_Rover_Pro
+ * @subpackage Ws_Rescue_Rover_Pro/admin
+ */
+
+/**
+ * The admin-specific functionality of the plugin.
+ *
+ * Defines the plugin name, version, and two examples hooks for how to
+ * enqueue the admin-specific stylesheet and JavaScript.
+ *
+ * @package    Ws_Rescue_Rover_Pro
+ * @subpackage Ws_Rescue_Rover_Pro/admin
+ * @author     Wonkasoft <support@wonkasoft.com>
+ */
+
 ob_start();
 ?>
 <div class="container-fluid">
