@@ -23,7 +23,7 @@
 
 ob_start();
 ?>
-<div class="container-fluid">
+<div class="container-fluid dogs-shortcode">
 	<div class="row">
 		<div class="col text-center">
 			<h3>Available Dogs</h3>
@@ -51,13 +51,13 @@ ob_start();
 	</div>
 	<div class="row">
 		<div class="col">
-			<div class="card" style="width: 18rem;">
+			<div class="card">
 				<img src="https://coastalgsr.org/graphics/thumbnails/22652.jpg" class="card-img-top" alt="dog-image">
 				<div class="card-body">
-					<ul>
-						<li><a href="#">Sponsor Me</a></li>
-						<li><a href="#">I'm Fostered</a></li>
-						<li><a href="#">Adopt Me</a></li>
+					<ul class="list-group list-group-horizontal">
+						<li class="list-group-item"><a href="#">Sponsor Me</a></li>
+						<li class="list-group-item"><a href="#">I'm Fostered</a></li>
+						<li class="list-group-item"><a href="#">Adopt Me</a></li>
 					</ul>
 				</div>
 			</div>
@@ -78,13 +78,13 @@ ob_start();
 	</div>
 	<div class="row">
 		<div class="col">
-			<div class="card" style="width: 18rem;">
+			<div class="card">
 				<img src="https://coastalgsr.org/graphics/thumbnails/22552.jpg" class="card-img-top" alt="dog-image">
 				<div class="card-body">
-					<ul>
-						<li><a href="#">Sponsor Me</a></li>
-						<li><a href="#">I'm Fostered</a></li>
-						<li><a href="#">Adopt Me</a></li>
+					<ul class="list-group list-group-horizontal">
+						<li class="list-group-item"><a href="#">Sponsor Me</a></li>
+						<li class="list-group-item"><a href="#">I'm Fostered</a></li>
+						<li class="list-group-item"><a href="#">Adopt Me</a></li>
 					</ul>
 				</div>
 			</div>
@@ -106,13 +106,13 @@ ob_start();
 	</div>
 	<div class="row">
 		<div class="col">
-			<div class="card" style="width: 18rem;">
+			<div class="card">
 				<img src="https://coastalgsr.org/graphics/thumbnails/21954.jpg" class="card-img-top" alt="dog-image">
 				<div class="card-body">
-					<ul>
-						<li><a href="#">Sponsor Me</a></li>
-						<li><a href="#">I'm Fostered</a></li>
-						<li><a href="#">Adopt Me</a></li>
+					<ul class="list-group list-group-horizontal">
+						<li class="list-group-item"><a href="#">Sponsor Me</a></li>
+						<li class="list-group-item"><a href="#">I'm Fostered</a></li>
+						<li class="list-group-item"><a href="#">Adopt Me</a></li>
 					</ul>
 				</div>
 			</div>

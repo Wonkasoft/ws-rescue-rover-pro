@@ -91,10 +91,10 @@ class Ws_Rescue_Rover_Pro_Admin {
 			if ( ! wp_style_is( $style, 'enqueued' ) && ! wp_style_is( $style, 'done' ) ) {
 				// queue up your bootstrap
 				wp_enqueue_style( 'bootstrap', plugin_dir_url( __FILE__ ) . 'css/bootstrap.min.css', array(), '5.3.3', 'all' );
+				wp_enqueue_style( 'bootstrap-reboot', plugin_dir_url( __FILE__ ) . 'css/bootstrap-reboot.min.css', array(), '5.3.3', 'all' );
+				wp_enqueue_style( 'bootstrap-utilities', plugin_dir_url( __FILE__ ) . 'css/bootstrap-utilities.min.css', array(), '5.3.3', 'all' );
 			}
 
-			wp_enqueue_style( 'bootstrap-reboot', plugin_dir_url( __FILE__ ) . 'css/bootstrap-reboot.min.css', array(), '5.3.3', 'all' );
-			wp_enqueue_style( 'bootstrap-utilities', plugin_dir_url( __FILE__ ) . 'css/bootstrap-utilities.min.css', array(), '5.3.3', 'all' );
 			wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/ws-rescue-rover-pro-admin.css', array(), $this->version, 'all' );
 		}
 
@@ -151,7 +151,6 @@ class Ws_Rescue_Rover_Pro_Admin {
 		add_menu_page( 'Reports Menu', 'Reports Menu', 'manage_options', 'ws_reports_page', array( $this, 'ws_rescue_rover_reports_page' ), 'dashicons-feedback', 4 );
 
 	}//end create_admin_pages()
-
 
 	public function rescue_settings_page() {
 		include plugin_dir_path( __FILE__ ) . 'pages/rescue-rover-main-page.php';

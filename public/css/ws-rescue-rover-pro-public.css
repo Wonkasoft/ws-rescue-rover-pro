@@ -17,3 +17,17 @@
 .single-dogs .entry-title {
     width: 100%;
 }
+
+.dogs-shortcode .card {
+    max-width: 300px;
+    border: none;
+}
+
+.dogs-shortcode .card .card-body {
+    padding: 0;
+}
+
+.dogs-shortcode .card .card-body ul li {
+    text-align: center;
+    font-size: .9rem;
+}
