@@ -18,9 +18,33 @@
     width: 100%;
 }
 
+.dogs-shortcode .banner-row {
+    margin: 15px 0;
+    background: #ADD8E6;
+    padding: 25px 0 25px 0;
+}
+
+.dogs-shortcode .banner-row h4 {
+    margin: auto;
+}
+
+.dogs-shortcode .dogs-row {
+    padding: 15px 0;
+}
+
 .dogs-shortcode .card {
-    max-width: 280px;
+    max-width: 210px;
     border: none;
+    text-align: center;
+}
+
+.dogs-shortcode .card.dogs-card h4 {
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+.dogs-shortcode .card.dogs-card h5 {
+    font-size: 1rem;
 }
 
 .dogs-shortcode .card .card-body {
@@ -28,7 +52,33 @@
 }
 
 .dogs-shortcode .card .card-body ul li {
+    width: 33.3%;
     text-align: center;
+    padding: 3px;
+    word-spacing: 20px;
     font-size: .8rem;
-    line-height: 1.5;
+    line-height: 1.6;
+}
+
+.dogs-shortcode .card .card-body ul li a {
+    color: #000;
+    text-decoration: none;
+}
+
+.dogs-shortcode .card .card-body ul li:first-child {
+    background: #4686A2;
+    border-radius: 0 0 0 4px;
+}
+
+.dogs-shortcode .card .card-body ul li:first-child a {
+    color: #fff;
+}
+
+.dogs-shortcode .card .card-body ul li:nth-child(2) {
+    background: #D9F6FF;
+}
+
+.dogs-shortcode .card .card-body ul li:last-child {
+    background: #ADD8E6;
+    border-radius: 0 0 4px 0;
 }
