@@ -67,6 +67,7 @@
     word-spacing: 20px;
     font-size: .8rem;
     line-height: 1.6;
+    border: none;
 }
 
 .dogs-shortcode .card.dogs-card .card-body ul li a {
