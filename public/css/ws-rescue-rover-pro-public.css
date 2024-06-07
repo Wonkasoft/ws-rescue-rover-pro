@@ -38,6 +38,10 @@
     text-align: center;
 }
 
+.dogs-shortcode .card.dogs-card img {
+    margin: auto;
+}
+
 .dogs-shortcode .card.dogs-card h4 {
     font-size: 1.1rem;
     font-weight: bold;
@@ -51,7 +55,12 @@
     padding: 0;
 }
 
-.dogs-shortcode .card .card-body ul li {
+.dogs-shortcode .card.dogs-card .card-body ul {
+    list-style: none;
+    margin: 0;
+}
+
+.dogs-shortcode .card.dogs-card .card-body ul li {
     width: 33.3%;
     text-align: center;
     padding: 3px;
@@ -60,25 +69,25 @@
     line-height: 1.6;
 }
 
-.dogs-shortcode .card .card-body ul li a {
+.dogs-shortcode .card.dogs-card .card-body ul li a {
     color: #000;
     text-decoration: none;
 }
 
-.dogs-shortcode .card .card-body ul li:first-child {
+.dogs-shortcode .card.dogs-card .card-body ul li:first-child {
     background: #4686A2;
     border-radius: 0 0 0 4px;
 }
 
-.dogs-shortcode .card .card-body ul li:first-child a {
+.dogs-shortcode .card.dogs-card .card-body ul li:first-child a {
     color: #fff;
 }
 
-.dogs-shortcode .card .card-body ul li:nth-child(2) {
+.dogs-shortcode .card.dogs-card .card-body ul li:nth-child(2) {
     background: #D9F6FF;
 }
 
-.dogs-shortcode .card .card-body ul li:last-child {
+.dogs-shortcode .card.dogs-card .card-body ul li:last-child {
     background: #ADD8E6;
     border-radius: 0 0 4px 0;
 }
