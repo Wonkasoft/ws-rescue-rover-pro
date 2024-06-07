@@ -37,7 +37,6 @@ ob_start();
 	    </div>
 	</div>
 
-
 	<div class="row dogs-row">
 		<div class="col">
 			<div class="card dogs-card">
