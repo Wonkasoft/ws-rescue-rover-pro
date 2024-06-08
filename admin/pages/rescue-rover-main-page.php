@@ -47,7 +47,7 @@
   <div class="card-body d-flex flex-column justify-content-between">
   <h5 class="card-title">Reports</h5>
   <p class="card-text">Reports Menu: Access comprehensive reports including donation records, event and shelter rosters, monthly totals, and bios of available dogs, ensuring transparent and efficient management of our organization's operations.</p>
-  <button href="<?php echo esc_url( get_admin_url( null, 'admin.php?page=ws_reports_page' ), null, 'display' ); ?>" class="btn d-block btn-primary">Go To Reports Menu</button>
+  <a href="<?php echo esc_url( get_admin_url( null, 'admin.php?page=ws_reports_page' ), null, 'display' ); ?>" class="btn d-block btn-primary">Go To Reports Menu</a>
   </div> <!-- end of card-body -->
 </div> <!-- end of card -->
 </div> <!-- end of col -->
