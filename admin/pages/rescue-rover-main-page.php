@@ -27,7 +27,7 @@
   <div class="card-body d-flex flex-column justify-content-between">
 	<h5 class="card-title">Dogs</h5>
 	<p class="card-text">Dogs Menu: Explore our canine companions at Coastal Vets, browse available dogs and puppy litters, arrange boarding, or locate shelters for adoption opportunities.</p>
-	<a href="#" class="btn btn-danger">Go To Dog Menu</a>
+	<a href="<?php echo esc_url( get_admin_url( null, 'admin.php?page=ws_dogs_page' ), null, 'display' ); ?>" class="btn btn-danger">Go To Dog Menu</a>
   </div> <!-- end of card-body -->
 </div> <!-- end of card -->
 </div> <!-- end of col -->
@@ -37,7 +37,7 @@
   <div class="card-body d-flex flex-column justify-content-between">
   <h5 class="card-title">People</h5>
   <p class="card-text">People Menu: Engage with our community of adopters, fosters, and volunteers by reviewing applications, managing placements, and tracking volunteer activities.</p>
-  <a href="#" class="btn btn-danger">Go To People Menu</a>
+  <a href="<?php echo esc_url( get_admin_url( null, 'admin.php?page=ws_people_page' ), null, 'display' ); ?>" class="btn btn-danger">Go To People Menu</a>
   </div> <!-- end of card-body -->
 </div> <!-- end of card -->
 </div> <!-- end of col -->
@@ -47,7 +47,7 @@
   <div class="card-body d-flex flex-column justify-content-between">
   <h5 class="card-title">Reports</h5>
   <p class="card-text">Reports Menu: Access comprehensive reports including donation records, event and shelter rosters, monthly totals, and bios of available dogs, ensuring transparent and efficient management of our organization's operations.</p>
-  <button href="#" class="btn d-block btn-primary">Go To Reports Menu</button>
+  <button href="<?php echo esc_url( get_admin_url( null, 'admin.php?page=ws_reports_page' ), null, 'display' ); ?>" class="btn d-block btn-primary">Go To Reports Menu</button>
   </div> <!-- end of card-body -->
 </div> <!-- end of card -->
 </div> <!-- end of col -->

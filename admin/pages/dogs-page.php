@@ -2,8 +2,6 @@
 
 
 ?>
-
-
 <div class="container-fluid">
 	<nav class="nav justify-content-center bg-dark">
 	  <a class="nav-link text-light active" href="#">Dog Menu</a>
