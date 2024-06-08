@@ -33,7 +33,7 @@
 }
 
 .dogs-shortcode .card {
-    max-width: 210px;
+    max-width: 160px;
     border: none;
     text-align: center;
 }
@@ -63,10 +63,10 @@
 .dogs-shortcode .card.dogs-card .card-body ul li {
     width: 33.3%;
     text-align: center;
-    padding: 3px;
-    word-spacing: 20px;
-    font-size: .8rem;
-    line-height: 1.6;
+    padding: 5px 0;
+    word-spacing: 5px;
+    font-size: 0.7rem;
+    line-height: 1.4;
     border: none;
 }
 
