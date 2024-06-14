@@ -30,7 +30,30 @@ class Ws_Rescue_Rover_Pro_Activator {
 	 * @since    1.0.0
 	 */
 	public static function activate() {
-
+		global $wpdb;
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'migrations/migration-adopters.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'migrations/migration-adoption_apps.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'migrations/migration-articles.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'migrations/migration-coastal_boarding.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'migrations/migration-coastal_vets.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'migrations/migration-dogs.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'migrations/migration-donations.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'migrations/migration-events.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'migrations/migration-fosters.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'migrations/migration-foster_apps.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'migrations/migration-happy_tails.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'migrations/migration-litters.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'migrations/migration-memorials.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'migrations/migration-other_declines.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'migrations/migration-private.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'migrations/migration-puppy_apps.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'migrations/migration-reminder_emails.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'migrations/migration-rescue_transfers.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'migrations/migration-resources.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'migrations/migration-shelters.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'migrations/migration-temp.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'migrations/migration-volunteers.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'migrations/migration-volunteer_apps.php';
 	}
 
 }

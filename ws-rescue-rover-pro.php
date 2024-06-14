@@ -36,6 +36,10 @@ if ( ! defined( 'WPINC' ) ) {
  * Rename this for your plugin and update it as you release new versions.
  */
 define( 'WS_RESCUE_ROVER_PRO_VERSION', '1.0.0' );
+define( 'WS_RESCUE_ROVER_PRO_PATH', plugin_dir_path( __FILE__ ) );
+define( 'WS_RESCUE_ROVER_PRO_NAME', ucwords( str_replace( 'wp', 'WP', str_replace( '-', ' ', plugin_basename( dirname( __FILE__ ) ) ) ) ) );
+define( 'WS_RESCUE_ROVER_PRO_BASENAME', plugin_basename( __FILE__ ) );
+define( 'WS_RESCUE_ROVER_PRO_URI', plugin_dir_url( __FILE__ ) );
 
 /**
  * The code that runs during plugin activation.
