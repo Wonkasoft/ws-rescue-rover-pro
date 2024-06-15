@@ -44,8 +44,8 @@ class Ws_Rescue_Rover_Pro_Public {
 	 * Initialize the class and set its properties.
 	 *
 	 * @since    1.0.0
-	 * @param      string    $plugin_name       The name of the plugin.
-	 * @param      string    $version    The version of this plugin.
+	 * @param      string $plugin_name       The name of the plugin.
+	 * @param      string $version    The version of this plugin.
 	 */
 	public function __construct( $plugin_name, $version ) {
 
@@ -72,13 +72,13 @@ class Ws_Rescue_Rover_Pro_Public {
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
-        $style = 'bootstrap';
-            if ( ! wp_style_is( $style, 'enqueued' ) && ! wp_style_is( $style, 'done' ) ) {
-                // queue up your bootstrap
-                wp_enqueue_style( 'bootstrap', plugin_dir_url( __FILE__ ) . 'css/bootstrap.min.css', array(), '5.3.3', 'all' );
-                wp_enqueue_style( 'bootstrap-reboot', plugin_dir_url( __FILE__ ) . 'css/bootstrap-reboot.min.css', array(), '5.3.3', 'all' );
-                wp_enqueue_style( 'bootstrap-utilities', plugin_dir_url( __FILE__ ) . 'css/bootstrap-utilities.min.css', array(), '5.3.3', 'all' );
-            }
+		$style = 'bootstrap';
+		if ( ! wp_style_is( $style, 'enqueued' ) && ! wp_style_is( $style, 'done' ) ) {
+			// queue up your bootstrap
+			wp_enqueue_style( 'bootstrap', plugin_dir_url( __FILE__ ) . 'css/bootstrap.min.css', array(), '5.3.3', 'all' );
+			wp_enqueue_style( 'bootstrap-reboot', plugin_dir_url( __FILE__ ) . 'css/bootstrap-reboot.min.css', array(), '5.3.3', 'all' );
+			wp_enqueue_style( 'bootstrap-utilities', plugin_dir_url( __FILE__ ) . 'css/bootstrap-utilities.min.css', array(), '5.3.3', 'all' );
+		}
 
 		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/ws-rescue-rover-pro-public.css', array(), $this->version, 'all' );
 
@@ -106,29 +106,41 @@ class Ws_Rescue_Rover_Pro_Public {
 
 	}
 
-    function ws_rescue_post_type_templates_include( $template ) {
-        // $custom_post_types = $this->get_custom_post_types();
-        // foreach ( $custom_post_types as $key => $value) {
-        //     if ( is_singular( $key ) ) {
-        //         // Load single template from your plugin
-        //         $template = plugin_dir_path(__FILE__) . 'templates/singles/single-' . $key . '.php';
-        //     } elseif ( is_post_type_archive( $key ) ) {
-        //         // Load archive template from your plugin
-        //         $template = plugin_dir_path(__FILE__) . 'templates/archives/archive-' . $key . '.php';
-        //     }
-        // }
+	function ws_rescue_post_type_templates_include( $template ) {
+		// $custom_post_types = $this->get_custom_post_types();
+		// foreach ( $custom_post_types as $key => $value) {
+		// if ( is_singular( $key ) ) {
+		// Load single template from your plugin
+		// $template = plugin_dir_path(__FILE__) . 'templates/singles/single-' . $key . '.php';
+		// } elseif ( is_post_type_archive( $key ) ) {
+		// Load archive template from your plugin
+		// $template = plugin_dir_path(__FILE__) . 'templates/archives/archive-' . $key . '.php';
+		// }
+		// }
 
-        return $template;
-    }
+		return $template;
+	}
 
 
 
-    function ws_rescue_register_shortcodes() {
-        add_shortcode( 'available-dogs', array( $this, 'build_available_dogs') );
-    }
+	function ws_rescue_register_shortcodes() {
+		add_shortcode( 'available-dogs', array( $this, 'build_available_dogs' ) );
+	}
 
-    function build_available_dogs() {
-        require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/templates/shortcodes/available-dogs-shortcode.php';
-        return $output;
-    }
+	function build_available_dogs( $atts ) {
+		$atts = shortcode_atts(
+			array(
+				'category' => 'all',
+			),
+			$atts,
+			'available-dogs'
+		);
+
+		global $wpdb;
+		ob_start();
+
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/templates/shortcodes/available-dogs-shortcode.php';
+
+		return ob_get_clean();
+	}
 }
