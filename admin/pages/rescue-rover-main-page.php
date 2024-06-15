@@ -28,6 +28,7 @@
 	<h5 class="card-title">Dogs</h5>
 	<p class="card-text">Dogs Menu: Explore our canine companions at Coastal Vets, browse available dogs and puppy litters, arrange boarding, or locate shelters for adoption opportunities.</p>
 	<a href="<?php echo esc_url( get_admin_url( null, 'admin.php?page=ws_dogs_page' ), null, 'display' ); ?>" class="btn btn-danger">Go To Dog Menu</a>
+  
   </div> <!-- end of card-body -->
 </div> <!-- end of card -->
 </div> <!-- end of col -->
