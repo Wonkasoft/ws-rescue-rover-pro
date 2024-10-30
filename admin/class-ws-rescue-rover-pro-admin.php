@@ -95,6 +95,19 @@ class Ws_Rescue_Rover_Pro_Admin {
 				wp_enqueue_style( 'bootstrap-utilities', plugin_dir_url( __FILE__ ) . 'css/bootstrap-utilities.min.css', array(), '5.3.3', 'all' );
 			}
 
+			    // Enqueue Bootstrap Icons from CDN
+        wp_enqueue_style(
+            'bootstrap-icons',
+            'https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css',
+            array(),
+            '1.11.3',
+            'all'
+        );
+
+        // Add integrity and crossorigin attributes to the CDN style
+        wp_style_add_data( 'bootstrap-icons', 'integrity', 'sha384-tViUnnbYAV00FLIhhi3v/dWt3Jxw4gZQcNoSCxCIFNJVCx7/D55/wXsrNIRANwdD' );
+        wp_style_add_data( 'bootstrap-icons', 'crossorigin', 'anonymous' );
+
 			wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/ws-rescue-rover-pro-admin.css', array(), $this->version, 'all' );
 		}
 

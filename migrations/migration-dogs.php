@@ -6,7 +6,6 @@
 
 			$sql = "CREATE TABLE IF NOT EXISTS `{$table_name}` (
     id INT(10) NOT NULL AUTO_INCREMENT,
-    unique_ID INT(5) NOT NULL,
     archived CHAR(1) NULL,
     name VARCHAR(20) NULL,
     other_names VARCHAR(30) NULL,
