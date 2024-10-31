@@ -119,14 +119,8 @@
 
     window.handleViewDetails = function (button) {
       try {
-        const encodedData = button.getAttribute("data-dog"); // Get escaped JSON string
-        console.log(encodedData);
-        // Assuming jsonString is the stored JSON string retrieved from the database
-        const retrievedData = JSON.parse(encodedData);
+        const retrievedData = button.getAttribute("data-dog"); // Get escaped JSON string
         console.log(retrievedData);
-        // Re-sanitize any HTML content (e.g., long_desc) before rendering in the UI
-        retrievedData.long_desc = sanitizeHTML(retrievedData.long_desc);
-        retrievedData.short_desc = sanitizeHTML(retrievedData.short_desc);
 
         // retrievedData is now safe to use in the application
         const dog = retrievedData; // Parse JSON safely
@@ -146,6 +140,7 @@
 
     // Render the table rows
     function renderTableRows(data) {
+      console.log( data );
       const tableBody = document.querySelector("#dogTable tbody");
       tableBody.innerHTML = ""; // Clear the table
       data.forEach((dog) => {

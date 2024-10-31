@@ -55,7 +55,6 @@
     litter_notes TEXT NULL,
     vol_contact VARCHAR(30) NULL,
     PRIMARY KEY (id),
-    UNIQUE KEY unique_ID (unique_ID)
 ) $charset_collate;";
 
 	require_once ABSPATH . 'wp-admin/includes/upgrade.php';

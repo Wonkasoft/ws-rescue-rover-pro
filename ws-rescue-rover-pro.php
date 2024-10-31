@@ -41,6 +41,7 @@ define( 'WS_RESCUE_ROVER_PRO_NAME', ucwords( str_replace( 'wp', 'WP', str_replac
 define( 'WS_RESCUE_ROVER_PRO_BASENAME', plugin_basename( __FILE__ ) );
 define( 'WS_RESCUE_ROVER_PRO_URI', plugin_dir_url( __FILE__ ) );
 
+
 /**
  * The code that runs during plugin activation.
  * This action is documented in includes/class-ws-rescue-rover-pro-activator.php

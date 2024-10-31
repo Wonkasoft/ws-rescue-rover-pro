@@ -7,6 +7,7 @@ $dog = new DogModel();
 
 // Fetch all dogs from the database
 global $wpdb;
+
 $table_name = $wpdb->prefix . 'ws_rescue_rover_pro_dogs';
 $dogs = $wpdb->get_results("SELECT * FROM $table_name", ARRAY_A); // Fetch as an array for JSON encoding
 
@@ -86,7 +87,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_dog'])) {
 <div class="container-fluid d-flex flex-column">
 <div class="row">
 <nav class="nav justify-content-center bg-dark">
-  <a class="nav-link text-light" href="<?php echo esc_url(get_admin_url(null, 'admin.php?page=ws_dog_page')); ?>">Dog Menu</a>
+  <a class="nav-link text-light" href="<?php echo esc_url(get_admin_url(null, 'admin.php?page=ws_dogs_page')); ?>">Dog Menu</a>
   <a class="nav-link text-light" href="<?php echo esc_url(get_admin_url(null, 'admin.php?page=ws_people_page')); ?>">People Menu</a>
   <a class="nav-link text-light" href="<?php echo esc_url(get_admin_url(null, 'admin.php?page=ws_reports_page')); ?>">Reports Menu</a>
 </nav>
